@@ -1,6 +1,7 @@
 function calculateBill() {
     var thecallCost = 0;
     var theSmsCost = 0;
+    var emptyString= 0;
     var theTotalCost = thecallCost + theSmsCost;
 
     function setCallCost(callCost) {
@@ -36,13 +37,29 @@ function calculateBill() {
     }
 
    
-    function getTotalCost() {
+    function getEmptyString() {
 
-        if (theTotalCost !== "sms" || "call") {
+        if (emptyString !== "sms" || "call") {
             return 0.00
         }
 
 
+    }
+
+
+    function getTotalCost() {
+
+        let cost = {
+            call: 2.75,
+            sms: 0.75,
+        }
+        
+
+        if (cost === 'call' || 'sms') {
+
+        }
+
+        return theTotalCost
     }
 
     return {
@@ -50,6 +67,7 @@ function calculateBill() {
         getCallCost,
         setSmsCost,
         getSmsCost,
+        getEmptyString,
         getTotalCost
     }
 }

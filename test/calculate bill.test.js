@@ -17,9 +17,18 @@ describe("The calculate bill function",function(){
    
     it("should return 0 if passed with empty string",function(){
         let calculate_bill4 = calculateBill()
-        calculate_bill4.getTotalCost("")
+        calculate_bill4.getEmptyString("")
         
-         assert.equal(0.00, calculate_bill4.getTotalCost())
+         assert.equal(0.00, calculate_bill4.getEmptyString())
+ 
+     })
+
+     it("should return total of call and sms",function(){
+        let text_bill3 = textBill()
+        
+        text_bill3.getTotalCost()
+        
+         assert.equal(0.00, text_bill3.getTotalCost())
  
      })
 })
