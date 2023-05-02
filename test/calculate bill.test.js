@@ -19,12 +19,12 @@ describe("The calculate bill function",function(){
         let calculate_bill4 = calculateBill()
         calculate_bill4.getEmptyString("")
         
-         assert.equal(0.00, calculate_bill4.getEmptyString())
+         assert.equal("", calculate_bill4.getEmptyString())
  
      })
 
      it("should return total of call and sms",function(){
-        let text_bill3 = textBill()
+        let text_bill3 = calculateBill()
         
         text_bill3.getTotalCost()
         
