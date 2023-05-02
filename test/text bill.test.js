@@ -20,7 +20,7 @@ describe("The text bill function",function(){
 
         text_bill4.getTotalCost("")
         
-         assert.equal(0.00, text_bill4.getTotalCost())
+         assert.equal("", text_bill4.getTotalCost())
  
      })
 
