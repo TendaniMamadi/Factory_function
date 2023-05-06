@@ -1,73 +1,50 @@
 function textBill() {
     var thecallCost = 0;
     var theSmsCost = 0;
-    var theZeroCost = 0; 
-    var theTotalCost = thecallCost + theSmsCost;
+  
 
-    function setCallCost(callCost) {
+    function calculate1(callCost) {
 
         let callCost1 = callCost.toLowerCase().split(',');
         for (var i = 0; i < callCost1.length; i++) {
             let callCost2 = callCost1[i].trim();
+
             if (callCost2 === "call") {
                 thecallCost += 2.75
             }
-        }
-    }
-
-    function getCallCost() {
-
-        return thecallCost;
-    }
-
-    function setSmsCost(smsCost) {
-        let smsCost1 = smsCost.toLowerCase().split(',');
-        for (var i = 0; i < smsCost1.length; i++) {
-            let smsCost2 = smsCost1[i].trim();
-            if (smsCost2 === "sms") {
+            if (callCost2 === "sms") {
+    
                 theSmsCost += 0.75
             }
         }
-        
-    }
 
-    function getSmsCost() {
-
-        return theSmsCost;
     }
 
    
-    function getTheZeroCost() {
+    function getTotalCost1() {
 
-        if (theZeroCost !== "sms" || "call") {
-            return 0.00
-        }
-
-
+        return thecallCost + theSmsCost
     }
 
-    function getTotalCost() {
+    function totalClassName() {
 
-        let cost = {
-            call: 2.75,
-            sms: 0.75,
-        }
-        
+        if (getTotalCost1() > 30) {
 
-        if (cost === 'call' || 'sms') {
-
+            return "critical"
         }
 
-        return theTotalCost
+        if (getTotalCost1() > 20) {
+
+            return "warning"
+        }
     }
+
+
 
     return {
-        setCallCost,
-        getCallCost,
-        setSmsCost,
-        getSmsCost,
-        getTheZeroCost,
-        getTotalCost
+        calculate1,
+        getTotalCost1,
+        totalClassName
     }
 }
 
