@@ -140,3 +140,99 @@ describe("Use radio bill set Values", function () {
 
 
 })
+
+describe("radio bill warning and critical level", function () {
+
+    it("should return a class name of 'warning' if warning level is reached", function () {
+
+        let radio_bill = radioBill()
+
+        radio_bill.setRadioCallBill(1.75)
+        radio_bill.setRadioSmsBill(0.75)
+        radio_bill.setWarningLevel(5)
+        radio_bill.setCriticalLevel(10)
+        
+        
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+
+        assert.equal("warning",radio_bill.totalClassName())
+    })
+
+
+    it("should return a class name of 'critical' if critical level is reached", function () {
+
+        let radio_bill = radioBill()
+
+        radio_bill.setRadioCallBill(2.75)
+        radio_bill.setRadioSmsBill(0.75)
+        radio_bill.setCriticalLevel(10)
+
+        
+        
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+        radio_bill.sendSms()
+        radio_bill.sendSms()
+        radio_bill.sendSms()
+
+        assert.equal("critical",radio_bill.totalClassName())
+    })
+
+    it("should stop the total call cost from increasing when critical level is reached", function () {
+
+        let radio_bill = radioBill()
+
+        radio_bill.setRadioCallBill(2.75)
+        radio_bill.setRadioSmsBill(0.75)
+        radio_bill.setCriticalLevel(11)
+
+        
+        
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+        radio_bill.makeCall()
+        
+        
+
+        assert.equal("critical",radio_bill.totalClassName())
+        assert.equal(11,radio_bill.getRadioBillCallCostTotal())
+    })
+
+
+    it("should be able to update the critical level  if the new value has been upped", function () {
+
+        let radio_bill = radioBill();
+
+        radio_bill.setRadioCallBill(2.75);
+        radio_bill.setRadioSmsBill(0.75);
+        radio_bill.setWarningLevel(8);
+        radio_bill.setCriticalLevel(11);
+
+        
+        
+        radio_bill.makeCall();
+        radio_bill.makeCall();
+        radio_bill.makeCall();
+        radio_bill.makeCall();
+        
+        
+
+        assert.equal("critical",radio_bill.totalClassName());
+        assert.equal(11,radio_bill.getRadioBillCallCostTotal());
+
+        radio_bill.setCriticalLevel(20);
+        assert.equal("warning",radio_bill.totalClassName());
+
+        radio_bill.makeCall();
+        radio_bill.makeCall();
+        assert.equal(16.50,radio_bill.getRadioBillCallCostTotal());
+
+
+
+    })
+
+})
